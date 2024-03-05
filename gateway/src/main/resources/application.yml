@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: graduation-design-gateway
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        server-addr: http://localhost:8848
+        username: nacos
+        password: nacos
+        namespace: public
+    gateway:
+      routes:
+        - id: graduation-design-admin
+          predicates:
+            - Path=/admin-api/**
+          uri: lb://graduation-design-admin
+          filters:
+            - StripPrefix=1
+            - PrefixPath=/api/
+        - id: graduation-design-user
+          predicates:
+            - Path=/user-api/**
+          uri: lb://graduation-design-user
+          filters:
+            - StripPrefix=1
+            - PrefixPath=/api/
+      globalcors: # 全局的跨域处理
+        add-to-simple-url-handler-mapping: true # 解决options请求被拦截问题
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: # 允许哪些网站的跨域请求
+              - "http://localhost:8085"
+            allowedMethods: # 允许的跨域ajax的请求方式
+              - "GET"
+              - "POST"
+              - "DELETE"
+              - "PUT"
+              - "OPTIONS"
+            allowedHeaders: "*" # 允许在请求中携带的头信息
+            allowCredentials: true # 是否允许携带cookie
+            maxAge: 360000 # 这次跨域检测的有效期
+server:
+  port: 80

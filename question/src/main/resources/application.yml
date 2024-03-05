@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: graduation-design-question
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        server-addr: http://localhost:8848
+        username: nacos
+        password: nacos
+        namespace: public
+  datasource:
+    url: 'jdbc:mysql://localhost:3306/question?
+            createDatabaseIfNotExist=true
+            &serverTimezone=Asia/Shanghai'
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    initialization-mode: always
+  redis:
+    host: localhost
+    port: 6379
+    password: foobared
+    database: 1
+server:
+  port: 8082
+
+logging:
+  level:
+    root: warn
+    com:
+      example: debug
+  pattern:
+    console: '%-5level %C.%M[%line] - %msg%n'
+
+jackson:
+  default-property-inclusion: non_null
+#cache:
+#  caffeine: # 在代码注入缓存管理器，此处配置无效
+#    spec: expireAfterWrite=1d, maximumSize=200

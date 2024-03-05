@@ -1,0 +1,39 @@
+POST http://localhost:8080/api/helpline
+Content-Type: application/json
+
+{
+  "province": "黑龙江",
+  "email": "li-0451@163.com",
+  "phone": "0451-82337347",
+  "fax": "0451-82352108",
+  "address": "黑龙江省哈尔滨市香坊区衡山路10号黑龙江省林业厅",
+  "code": "150090"
+
+}
+
+###
+DELETE http://localhost:8080/api/helpline/1511311538060767234
+
+###
+GET http://localhost:8080/api/helpline/list/1
+
+###
+GET http://localhost:8080/api/helpline/all
+
+###
+PUT http://localhost:8080/api/helpline/1511311526107000833
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json; charset=UTF-8
+Cookie: JSESSIONID=e1fd90bf-1148-4368-9fe9-018dcaf1aa0d
+#请求参数
+
+{
+  "province": "吉林",
+  "email": "lytbhc@sina.com",
+  "phone": "0431-88626629",
+  "fax": "0431-88626629",
+  "address": "吉林省长春市亚泰大街3698号吉林省林业厅",
+  "code": "130022"
+}
+
